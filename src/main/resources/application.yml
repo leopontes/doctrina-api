@@ -1,0 +1,74 @@
+server:
+  servlet:
+    context-path: /doctrina
+spring:
+  mail:
+    host: ${DOCTRINA_EMAIL_HOST}
+    port: 587
+    username: ${DOCTRINA_EMAIL_USERNAME}
+    password: ${DOCTRINA_EMAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls.enable: true
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 70MB
+      max-request-size: 70MB
+  jackson:
+    time-zone: America/Sao_Paulo
+  codec:
+    max-in-memory-size: 2MB
+  mvc:
+    servlet:
+      path: /api
+  datasource:
+    url : ${DOCTRINA_DATASOURCE_URL} 
+    username: app_doctrina
+    password: ${DOCTRINA_DATASOURCE_PASSWORD}
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    hikari:
+      idle-timeout: 300000
+      validation-timeout: 10000
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServer2012Dialect
+logging:
+  level:
+    br:
+     com:
+       doctrina: debug
+    org:
+      hibernate:
+        SQL: info
+        metamodel: error
+        type:
+          descriptor:
+            sql:
+              BasicBinder: info
+      springframework:
+        security: debug
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui-custom.html
+    operationsSorter: method
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+rsa:
+  private-key: classpath:certs/private-key.pem
+  public-key: classpath:certs/public-key.pem     
+
+      
