@@ -58,6 +58,8 @@ public class SecurityConfig {
 				.cors(CorsConfigurer::disable)
 				.authorizeHttpRequests(authorize -> authorize
 						.requestMatchers("/v1/auth/**").permitAll()
+						.requestMatchers("/swagger-ui/**").permitAll()
+						.requestMatchers("/actuator/**").permitAll()
 						.anyRequest().authenticated()
 				)
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

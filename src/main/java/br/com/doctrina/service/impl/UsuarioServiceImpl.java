@@ -1,6 +1,5 @@
 package br.com.doctrina.service.impl;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +14,6 @@ public class UsuarioServiceImpl extends AbstractCrudServiceImpl<Usuario> impleme
 
 	@Autowired
 	UsuarioRepository repository;
-	
-	@Autowired
-	ModelMapper modelMapper;
 	
 	@Override
 	public ICrudRepository<Usuario> getRepository() {
