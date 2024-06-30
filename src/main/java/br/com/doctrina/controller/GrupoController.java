@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.doctrina.dto.PerfilDTO;
+import br.com.doctrina.dto.GrupoDTO;
 import br.com.doctrina.service.GrupoService;
 import br.com.doctrina.spring.exception.NotFoundException;
 
@@ -32,41 +32,41 @@ public class GrupoController {
 	ModelMapper modelMapper;
 
 	@GetMapping("/{id}")
-	public Optional<PerfilDTO> findById(@PathVariable Long id) {
+	public Optional<GrupoDTO> findById(@PathVariable Long id) {
 		return service.get(id)
-				      .map(e->modelMapper.map(e, PerfilDTO.class));
+				      .map(e->modelMapper.map(e, GrupoDTO.class));
 	}
 	
 	@GetMapping
-	public Collection<PerfilDTO> findAll(){
+	public Collection<GrupoDTO> findAll(){
 		return service.listAll()
 				      .stream()
-				      .map(e->modelMapper.map(e, PerfilDTO.class))
+				      .map(e->modelMapper.map(e, GrupoDTO.class))
 				      .toList();
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Optional<PerfilDTO> create(@RequestBody final PerfilDTO dto) {
+	public Optional<GrupoDTO> create(@RequestBody final GrupoDTO dto) {
 		
 		if(Objects.isNull(dto)) {
 			throw new NotFoundException("Recurso não encontado.");
 		}
 		
 		return service.save(dto)
-					  .map(e->modelMapper.map(e, PerfilDTO.class));
+					  .map(e->modelMapper.map(e, GrupoDTO.class));
 	}
 	
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Optional<PerfilDTO> update(@PathVariable Long id, @RequestBody final PerfilDTO dto) {
+	public Optional<GrupoDTO> update(@PathVariable Long id, @RequestBody final GrupoDTO dto) {
 		
 		if(service.get(id).isEmpty()) {
 			throw new NotFoundException("Recurso não encontado.");
 		}
 		
 		return service.update(dto)
-					  .map(e->modelMapper.map(e, PerfilDTO.class));
+					  .map(e->modelMapper.map(e, GrupoDTO.class));
 	}
 	
 	@DeleteMapping

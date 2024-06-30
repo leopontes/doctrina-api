@@ -49,8 +49,7 @@ logging:
           descriptor:
             sql:
               BasicBinder: info
-      springframework:
-        security: debug
+      springframework: debug
 springdoc:
   api-docs:
     path: /api-docs
